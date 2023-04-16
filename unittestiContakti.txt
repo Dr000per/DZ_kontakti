@@ -1,0 +1,52 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Windows.Forms;
+using WindowsFormsApp1;
+
+namespace UnitTestProject1
+{
+    [TestClass]
+    public class UnitTest1
+    {
+        [TestMethod]
+        public void CheckNumberInString()
+        {
+            char a = 'f';
+
+
+            bool expected = false;
+
+
+            NumCheck g = new NumCheck();
+            bool actual = g.checknum(a);
+
+            Assert.AreEqual(expected, actual);
+
+        }
+        [TestMethod]
+        public void InsertInTable() 
+        {
+            object name = "Баблгам";
+            object phone = "+79124214123";
+
+            bool expected = false;
+
+            Commands cmd = new Commands();
+            bool actual = cmd.Command_Insert(name, phone);
+            
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Cmd_executesqlnonquery()
+        {
+            object querystring = $"update contacts set name = 'ЖопаПопа' where name = 'Жопа';";
+            bool expected = false;
+
+            Commands cmd = new Commands();
+            bool actual = cmd.Command_ExecuteSqlNonQuery(querystring);
+            MessageBox.Show(actual.ToString());
+            Assert.AreEqual(expected, actual);
+        }
+    }
+}
